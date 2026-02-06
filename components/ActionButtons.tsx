@@ -2,7 +2,7 @@ import React from 'react';
 
 const ActionButtons: React.FC<{ onGoToComoChegar?: () => void; onGoToHistory?: () => void; onGoToPhotos?: () => void; onGoToEvents?: () => void; onGoToTours?: () => void }> = ({ onGoToComoChegar, onGoToHistory, onGoToPhotos, onGoToEvents, onGoToTours }) => {
   const tiles: Array<{ label: string; image: string; onClick?: () => void }> = [
-    { label: 'Guias Impressos', image: '/actions/como-chegar.png', onClick: onGoToComoChegar },
+    { label: 'Como Chegar', image: '/actions/como-chegar.png', onClick: onGoToComoChegar },
     { label: 'Festas & Eventos', image: '/actions/festas-eventos.png', onClick: onGoToEvents },
     { label: 'Nossa História', image: '/actions/nossa-historia.png', onClick: onGoToHistory },
     { label: 'Passeios & Atividades', image: '/actions/passeios-atividades.png', onClick: onGoToTours },
