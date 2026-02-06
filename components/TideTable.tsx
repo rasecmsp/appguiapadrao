@@ -185,14 +185,28 @@ const TideDashboard: React.FC<TideTableProps> = ({ onBack }) => {
                     </div>
                 )}
 
-                {/* Tide Table External Link */}
-                <div className="bg-linear-to-r from-cyan-600 to-blue-600 rounded-2xl shadow-lg p-6 text-white text-center relative overflow-hidden">
+                {/* Tide Forecast Widget via Iframe - Tideschart is often cleaner */}
+                <div className="bg-white rounded-2xl shadow-sm p-2 mb-6 overflow-hidden">
+                    <div className="w-full h-[600px] relative">
+                        {/* Overlay to hide header/footer somewhat if needed, but difficult with cross-origin */}
+                        <iframe
+                            src="https://pt.tideschart.com/Brazil/Bahia/Camamu-Bay/Ilha-de-Boipeba/Weekly/"
+                            className="w-full h-full border-0"
+                            title="Tábua de Marés Semanal"
+                            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                        />
+                    </div>
+                    <div className="text-center p-2 text-xs text-gray-400">
+                        Fonte: TidesChart.com
+                    </div>
+                </div>
+
+                {/* Tide Table External Link (Fallback) */}
+                <div className="bg-linear-to-r from-cyan-600 to-blue-600 rounded-2xl shadow-lg p-6 text-white text-center relative overflow-hidden mb-8">
                     <div className="relative z-10">
                         <WavesIcon className="w-12 h-12 text-white/90 mx-auto mb-3" />
-                        <h2 className="text-xl font-bold mb-2">Tábua de Marés</h2>
-                        <p className="text-blue-100 text-sm mb-6 max-w-xs mx-auto">
-                            Para horários exatos das marés alta e baixa, consulte a tabela oficial completa.
-                        </p>
+                        <h2 className="text-xl font-bold mb-2">Tábua Oficial</h2>
+
                         <a
                             href="https://tabuademares.com/br/bahia/ilha-de-boipeba"
                             target="_blank"
