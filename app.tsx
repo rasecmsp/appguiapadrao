@@ -11,6 +11,7 @@ import { createClient, Session } from '@supabase/supabase-js';
 import Anuncie from './components/anuncie';
 import ComoChegar from './components/ComoChegar';
 import AdminComoChegar from './components/AdminComoChegar';
+import TideTable from './components/TideTable';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
@@ -77,7 +78,7 @@ const App: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [view, setView] = useState<'none' | 'login' | 'admin' | 'anuncie' | 'comoChegar' | 'tours' | 'useful' | 'phones' | 'photos' | 'historyPage' | 'events' | 'eventDetail'>('none');
+  const [view, setView] = useState<'none' | 'login' | 'admin' | 'anuncie' | 'comoChegar' | 'tours' | 'useful' | 'phones' | 'photos' | 'tideTable' | 'historyPage' | 'events' | 'eventDetail'>('none');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
@@ -790,6 +791,10 @@ const App: React.FC = () => {
   const openEvents = async () => {
     setView('events');
     await fetchPublicEvents();
+  };
+
+  const openTideTable = () => {
+    setView('tideTable');
   };
 
   // FunÃ§Ãµes para passeios & atividades - PÃšBLICO
@@ -5086,6 +5091,8 @@ const App: React.FC = () => {
             appName={guide.app_name}
             whatsappForCTA={whatsappDigits}
           />
+        ) : view === 'tideTable' ? (
+          <TideTable onBack={() => setView('none')} />
         ) : (
           <>
             <Carousel
@@ -5218,7 +5225,7 @@ const App: React.FC = () => {
           </>
         )}
       </main>
-      <Footer onGuide={handleHomeClick} onAnuncie={openAnuncie} onUseful={openUseful} onPhones={openPhones} />
+      <Footer onGuide={handleHomeClick} onAnuncie={openAnuncie} onUseful={openUseful} onPhones={openPhones} onTideTable={openTideTable} />
     </div>
   );
 };
