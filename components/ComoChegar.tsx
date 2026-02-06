@@ -115,7 +115,7 @@ const ComoChegar: React.FC<{ onBack: () => void; onNext: () => void }> = ({ onBa
             ← Voltar
           </button>
           <h1 className="text-2xl font-extrabold text-[#003B63] tracking-tight">
-            Guias Impressos
+            Como Chegar
           </h1>
           <button
             onClick={onNext}
