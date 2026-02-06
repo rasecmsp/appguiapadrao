@@ -5030,7 +5030,7 @@ const App: React.FC = () => {
                 </div>
               )}
             </div>
-            {/* Empresas relacionadas Ã  categoria "Passeios & Atividades" */}
+            {/* Empresas relacionadas à  categoria "Passeios & Atividades" */}
             {toursBusinesses.length > 0 && (
               <div className="mt-10">
                 <BusinessList
@@ -5110,7 +5110,7 @@ const App: React.FC = () => {
               <ActionButtons onGoToComoChegar={openComoChegar} onGoToHistory={openHistoryPublic} onGoToPhotos={openPhotos} onGoToEvents={openEvents} onGoToTours={openTours} />
               <div className="mb-6">
                 <h2 className="text-2xl font-extrabold text-slate-800 mb-4 text-center">Explore por Categoria</h2>
-                {/* NÃ­vel 1: Categorias */}
+                {/* Nível 1: Categorias */}
                 {!homeCategoryId && (
                   <div className="flex flex-wrap justify-center gap-4">
                     <button
@@ -5131,7 +5131,7 @@ const App: React.FC = () => {
                   </div>
                 )}
 
-                {/* NÃ­vel 2: Subcategorias */}
+                {/* Nível 2: Subcategorias */}
                 {homeCategoryId && !homeSubcategoryId && (
                   <div className="space-y-3">
                     <div className="flex flex-wrap gap-2 justify-center items-center">
