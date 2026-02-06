@@ -3080,7 +3080,7 @@ const App: React.FC = () => {
                     {tab === 'photos' && 'Fotos'}
                     {tab === 'carousel' && 'Carrossel'}
                     {tab === 'categories' && 'Categorias'}
-                    {tab === 'comoChegar' && 'Guias Impressos'}
+                    {tab === 'comoChegar' && 'Como Chegar'}
                     {tab === 'plans' && 'Planos'}
                     {tab === 'guide' && 'Dados do Guia'}
                   </button>
