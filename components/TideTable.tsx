@@ -9,10 +9,6 @@ const TideTable: React.FC<TideTableProps> = ({ onBack }) => {
     // URL amigável para mobile e info completa
     const externalUrl = "https://tabuademares.com/br/bahia/ilha-de-boipeba";
 
-    // Tentar usar um embed se possível, caso contrário usar link
-    // Muitas vezes sites de marés bloqueiam iframes. 
-    // Vamos tentar apresentar de forma elegante.
-
     return (
         <div className="fixed inset-0 bg-gray-50 z-50 overflow-y-auto flex flex-col">
             <header className="bg-cyan-600 text-white p-4 shadow-md sticky top-0 z-10 flex items-center shrink-0">
@@ -42,26 +38,47 @@ const TideTable: React.FC<TideTableProps> = ({ onBack }) => {
                     <p className="text-xs text-gray-400 mt-2">Abre em nova janela (Fonte: tabuademares.com)</p>
                 </div>
 
-                {/* Tentativa de iframe para sites que permitem ou widget específico */}
-                {/* 
-                   Nota: A maioria dos sites modernos bloqueia iframes via X-Frame-Options.
-                   Se houver um widget específico contratado ou público, substitua o iframe abaixo.
-                   Por enquanto, deixamos o botão como principal e um iframe como tentativa secundária.
-                */}
-                <div className="w-full h-full min-h-[500px] border border-gray-200 rounded-xl overflow-hidden shadow-sm relative bg-gray-100">
-                    <p className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm z-0">
-                        Carregando visualização...
-                    </p>
-                    <iframe
-                        src="https://widgets.tuempo.net/en/weather/ilha-de-boipeba/"
-                        className="w-full h-full relative z-10"
-                        title="Previsão do Tempo e Marés"
-                        sandbox="allow-scripts allow-same-origin allow-popups"
-                    />
+                {/* WeatherWidget.io para Boipeba */}
+                <div className="w-full max-w-4xl border border-gray-200 rounded-xl overflow-hidden shadow-sm relative bg-gray-100 p-2">
+                    <a
+                        className="weatherwidget-io"
+                        href="https://forecast7.com/pt/n13d58n38d92/boipeba/"
+                        data-label_1="BOIPEBA"
+                        data-label_2="BAHIA"
+                        data-font="Roboto"
+                        data-icons="Climacons Animated"
+                        data-mode="Current"
+                        data-days="5"
+                        data-theme="pure"
+                        style={{ display: 'block', pointerEvents: 'none' }}
+                    >
+                        BOIPEBA BAHIA
+                    </a>
                 </div>
             </div>
         </div>
     );
 };
 
-export default TideTable;
+// Inject script for widget
+const useScript = (url: string) => {
+    React.useEffect(() => {
+        const script = document.createElement('script');
+        script.src = url;
+        script.async = true;
+        script.id = 'weatherwidget-io-js';
+        if (!document.getElementById('weatherwidget-io-js')) {
+            document.body.appendChild(script);
+        }
+        return () => {
+        }
+    }, [url]);
+};
+
+// Wrapper compatible with React.FC
+const TideTableWithScript: React.FC<TideTableProps> = (props) => {
+    useScript('https://weatherwidget.io/js/widget.min.js');
+    return <TideTable {...props} />;
+}
+
+export default TideTableWithScript;
